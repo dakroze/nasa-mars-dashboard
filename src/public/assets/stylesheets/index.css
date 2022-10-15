@@ -166,7 +166,7 @@ footer {
 }
 
 .btn:hover {
-  background: #ea9999;
+  background: #5b5b5b;
   color: #fff;
   cursor: pointer;
 }
@@ -184,16 +184,7 @@ footer {
   text-align: center;
 }
 
-.credits,
-.credits a {
-  color: #6f777c;
-  font-size: 0.6rem;
-  text-align: center;
-}
 
-.credits {
-  padding: 2rem;
-}
 
 
 /* -------------------  TABLET  --------------------- */
