@@ -2,7 +2,7 @@
 let immStore = Immutable.Map({
     user: Immutable.Map({ name: 'Student' }),
     apod: '',
-    rovers: Immutable.List(['Curiosity', 'Opportunity', 'Spirit']),
+    rovers: Immutable.List(['curiosity', 'opportunity', 'spirit']),
     currentRover: 'none'
 })
 
@@ -21,7 +21,7 @@ const render = async (root, state) => {
     root.innerHTML = App(state)
 }
 
-// Content that is added to html
+// Content that is added to html. This is a high order function and pure function.
 const App = (state) => {
     if (state.get('currentRover') === 'none')  {
         return (`
@@ -71,22 +71,22 @@ const renderButtonBox = (state) => {
     return `<ul class="flex">${renderRoverButtons(state)}</ul>`
 }
 
-// Component to render rover buttons
+// Component to render rover buttons. This is a high order function and pure function.
 const renderRoverButtons = (state) => {
     //turn Immutable List into a regular array with Array.from
     return  Array.from(state.get('rovers')).map(item =>
         `<li id=${item} class="flex-item btn" onclick="openRover(event)">
-            <a ref="#"  class=""  >${item}</a>
+            <a ref="#"  class=""  >${capIt(item)}</a>
         </li>`
         ).join("")
 }
 
-// Component to render items for the menu on the header
+// Component to render items for the menu on the header. This is a high order function and pure function.
 const renderMenu = (state) => {
     //turn Immutable List into a regular array
     return  Array.from(state.get('rovers')).map(item =>
         `<li id=${item} class="" onclick="openRover(event)">
-            <a ref="#"  class=""  >${item}</a>
+            <a ref="#"  class=""  >${capIt(item)}</a>
         </li>`
         ).join("")
 }
@@ -121,6 +121,11 @@ const ImageOfTheDay = (state) => {
             ${state.get('apod').image.url}
         `)
     }
+}
+
+// Component capitalizes first letter of word
+const capIt = (word) => {
+  return word[0].toUpperCase() + word.slice(1)
 }
 
 // ------------------------------------------------------  EVENTS   ------------------------------------------------------
